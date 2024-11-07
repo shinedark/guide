@@ -443,3 +443,12 @@ p {
         font-size: 0.9rem;
     }
 }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Space Mono', monospace;
+}
