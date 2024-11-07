@@ -1,0 +1,440 @@
+{
+  "publicTimeline": {
+    "currentTreatments": [
+      "Weed",
+      "Abilify", 
+      "Dietary adjustments",
+      "Suplements",
+      "Exercise"
+    ],
+    "geneticCauses": {
+      "AHCY-01": {"rs819147": "Heterozygous (CT)"},
+      "APOE": {
+        "rs429358": "Heterozygous (CT)",
+        "rs7412": "Wild Type (CC)"
+      },
+      "BCMO1": {
+        "rs11645428": "Heterozygous (GA)",
+        "rs12934922": "Heterozygous (AT)",
+        "rs6564851": "Heterozygous (GT)",
+        "rs7501331": "Heterozygous (CT)",
+        "rs6420424": "Wild Type (GG)"
+      },
+      "CBS": {
+        "rs2851391": "Homozygous (TT)",
+        "rs1801181": "Heterozygous (AG)"
+      },
+      "COMT": {
+        "rs4633": "Heterozygous (CT)",
+        "rs4680": "Homozygous (AA)"
+      },
+      "CYP1B1": {"L432V": {"rs1056836": "Heterozygous (CG)"}},
+      "CYP2E1": {"6": {"rs6413432": "Heterozygous (AT)"}},
+      "DAOA/DAAO": {"rs3741775": "Homozygous (CC)"},
+      "DHFR": {"rs1643649": "Heterozygous (CT)"},
+      "FADS1": {
+        "rs174548": "Heterozygous (CG)",
+        "rs174537": "Heterozygous (GT)"
+      },
+      "FADS2": {"rs1535": "Heterozygous (GA)"},
+      "FOLR2": {"rs651933": "Homozygous (AA)"},
+      "FUT2": {
+        "rs602662": "Heterozygous (GA)",
+        "rs492602": "Heterozygous (GA)",
+        "rs601338": "Heterozygous (GA)"
+      },
+      "MTHFR": {    
+        "rs1801181": "Heterozygous (AG)"
+      }
+    },
+     
+    "otherCauses": {
+        "Candida": "Candida Gut Infestation",
+        "Leaky Gut": "Leaky Gut Syndrome",
+        "Food Sensitivities": "Food Sensitivities",
+        "Odixative stress": "Odixative stress",
+        "Histamine Intolerance": "Histamine Intolerance",
+        "Mythelation Problems": "Mythelation Problems"
+    },
+    "years": [
+      {
+        "year": 2011,
+        "name": "Camilo",
+        "diagnosis": "Paranoid schizophrenia with acute social anxiety",
+        "achievements": null,
+        "jobs": "Ghost Producer",
+        "hospitalizations": 1,
+        "lifeEvents": ["1st episode", "jail", "probation"],
+        "treatments": [
+          {
+            "name": "Zyprexa",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Risperidone",
+            "duration": "< 1 year"
+          }
+        ],
+        "reason": "First episode that happened",
+        "diagnosisChange": true
+      },
+      {
+        "year": 2012,
+        "name": "Camilo",
+        "diagnosis": "Paranoid schizophrenia with acute social anxiety",
+        "achievements": null,
+        "jobs": null,
+        "hospitalizations": 0,
+        "lifeEvents": ["Probation", "Sober"],
+        "treatments": [
+          {
+            "name": "Lorazepam",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Xanax",
+            "duration": "7 years"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          },
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          }
+        ],
+        "reason": "Ongoing treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2013,
+        "name": "Camilo",
+        "diagnosis": "Paranoid schizophrenia with acute social anxiety in remision",
+        "achievements": "Graduated from the court program and moved to Texas",
+        "jobs": null,
+        "hospitalizations": 0,
+        "lifeEvents": ["Graduated from the court program", "moved to Texas"],
+        "treatments": [
+          {
+            "name": "Xanax",
+            "duration": "7 years"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          },
+          {
+            "name": "Abilify",
+            "duration": "8 years"
+          }
+        ],
+        "reason": "Because i was getting better",
+        "diagnosisChange": true
+      },
+      {
+        "year": 2014,
+        "name": "Camilo",
+        "diagnosis": "Schizoaffective with acute social anxiety",
+        "achievements": null,
+        "jobs": null,
+        "hospitalizations": 0,
+        "lifeEvents": ["New doctor"],
+        "treatments": [
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          },
+          {
+            "name": "Xanax",
+            "duration": "7 years"
+          }
+        ],
+        "reason": "I was doing better",
+        "diagnosisChange": true
+      },
+      {
+        "year": 2015,
+        "name": "Camilo",
+        "diagnosis": "Schizoaffective with acute social anxiety",
+        "achievements": "Vinyl",
+        "jobs": 1,
+        "hospitalizations": 0,
+        "lifeEvents": ["Released 1200 vinyls to the world and sold them"],
+        "treatments": [
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Xanax",
+            "duration": "7 years"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          },
+          {
+            "name": "Exercise",
+            "duration": "3 years"
+          }
+        ],
+        "reason": "continue treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2016,
+        "name": "Camilo",
+        "diagnosis": "Schizoaffective with acute social anxiety",
+        "achievements": null,
+        "jobs": null,
+        "hospitalizations": 0,
+        "lifeEvents": ["Girl friend"],
+        "treatments": [
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Xanax",
+            "duration": "7 years"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          }
+        ],
+        "reason": "Ongoing treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2017,
+        "name": "Camilo",
+        "diagnosis": "Schizoaffective with acute social anxiety",
+        "achievements": "Coding bootcamp",
+        "jobs": null,
+        "hospitalizations": 0,
+        "lifeEvents": ["Learning to code"],
+        "treatments": [
+          {
+            "name": "Xanax",
+            "duration": "7 years"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          },
+          {
+            "name": "Abilify",
+            "duration": "8 years"
+          }
+        ],
+        "reason": "ongoing treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2018,
+        "name": "Camilo",
+        "diagnosis": "Schizoaffective with acute social anxiety",
+        "achievements": "Landed a job coding",
+        "jobs": "I-lue",
+        "hospitalizations": 0,
+        "lifeEvents": ["New Job"],
+        "treatments": [
+          {
+            "name": "Xanax",
+            "duration": "7 years"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          },
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          }
+        ],
+        "reason": "Ongoing treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2019,
+        "name": "Camilo",
+        "diagnosis": "Schizoaffective with acute social anxiety",
+        "achievements": "New Job",
+        "jobs": 1,
+        "hospitalizations": 0,
+        "lifeEvents": ["New job at marketing company"],
+        "treatments": [
+          {
+            "name": "Xanax",
+            "duration": "7 years"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          },
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          }
+        ],
+        "reason": "Ongoing treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2020,
+        "name": "Camilo",
+        "diagnosis": "Bipolar no depression with acute social anxiety",
+        "achievements": ["New Job", "moved out the house"],
+        "jobs": "M1neral",
+        "hospitalizations": 2,
+        "lifeEvents": ["New Job", "Covid", "Moved out", "Surgery", "Fired", "Hospitalizations"],
+        "treatments": [
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Clonazepam",
+            "duration": "8 years"
+          },
+          {
+            "name": "Trazodone",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Exercise",
+            "duration": "3 years"
+          }
+        ],
+        "reason": "I was doing better even with the episodes.",
+        "diagnosisChange": true
+      },
+      {
+        "year": 2021,
+        "name": "Camilo",
+        "diagnosis": "Bipolar no depression with acute social anxiety",
+        "achievements": ["New Job", "New Apartment"],
+        "jobs": "Perficient",
+        "hospitalizations": 0,
+        "lifeEvents": ["Broke up with girlfriend", "new job", "new aprtment"],
+        "treatments": [
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Exercise",
+            "duration": "3 years"
+          },
+          {
+            "name": "Weed",
+            "duration": "3 years"
+          }
+        ],
+        "reason": "Ongoing treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2022,
+        "name": "Camilo",
+        "diagnosis": "Bipolar no depression with acute social anxiety",
+        "achievements": null,
+        "jobs": null,
+        "hospitalizations": 2,
+        "lifeEvents": ["Lost job", "2 hospitalizations"],
+        "treatments": [
+          {
+            "name": "Trazodone",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Weed",
+            "duration": "3 years"
+          },
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Exercise",
+            "duration": "3 years"
+          }
+        ],
+        "reason": "Ongoing treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2023,
+        "name": "Camilo",
+        "diagnosis": "Bipolar no depression with acute social anxiety",
+        "achievements": null,
+        "jobs": null,
+        "hospitalizations": 3,
+        "lifeEvents": ["Tried different treatments and obligated for others"],
+        "treatments": [
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Weed",
+            "duration": "3 years"
+          },
+          {
+            "name": "Trazodone",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Trileptal",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Exercise",
+            "duration": "3 years"
+          }
+        ],
+        "reason": "ongoing treatment",
+        "diagnosisChange": false
+      },
+      {
+        "year": 2024,
+        "name": "Camilo",
+        "diagnosis": "Unknown",
+        "achievements": "New doctors and new treatment with results",
+        "jobs": null,
+        "hospitalizations": 0,
+        "lifeEvents": ["New doctors and treatment"],
+        "treatments": [
+          {
+            "name": "Weed",
+            "duration": "3 years"
+          },
+          {
+            "name": "Abilify",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Dietary adjustments",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Suplements",
+            "duration": "< 1 year"
+          },
+          {
+            "name": "Exercise",
+            "duration": "3 years"
+          }
+        ],
+        "reason": null,
+        "diagnosisChange": true
+      }
+    ]
+  }
+}
