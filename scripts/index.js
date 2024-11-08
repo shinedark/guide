@@ -37,15 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.tagName === 'BUTTON') {
       const sectionId = e.target.dataset.section
 
-      // Select random video
-      const randomVideo =
-        transitionVideos[Math.floor(Math.random() * transitionVideos.length)]
-      video.src = randomVideo
+      // Check if device is mobile
+      const isMobile = window.innerWidth <= 768
 
-      // Play transition
-      overlay.classList.add('active')
-      video.currentTime = 0
-      await video.play()
+      if (!isMobile) {
+        // Only play transition on desktop
+        const randomVideo =
+          transitionVideos[Math.floor(Math.random() * transitionVideos.length)]
+        video.src = randomVideo
+
+        overlay.classList.add('active')
+        video.currentTime = 0
+        await video.play()
+      }
 
       // Remove active class from all sections
       sections.forEach((section) => section.classList.remove('active'))
@@ -53,14 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add active class to selected section
       document.getElementById(sectionId).classList.add('active')
 
-      // Wait for video to finish
-      video.addEventListener(
-        'ended',
-        () => {
-          overlay.classList.remove('active')
-        },
-        { once: true },
-      )
+      if (!isMobile) {
+        // Only wait for video on desktop
+        video.addEventListener(
+          'ended',
+          () => {
+            overlay.classList.remove('active')
+          },
+          { once: true },
+        )
+      }
     }
   })
 

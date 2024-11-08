@@ -5,6 +5,7 @@
     list-style: none;
 }
 
+
 .space-mono-regular {
     font-family: "Space Mono", serif;
     font-weight: 400;
@@ -61,7 +62,7 @@ main {
     justify-content: flex-start;
     height: calc(100vh - 70px);
     width: 100vw;
-
+    padding-top: 60px;
     padding-bottom: 80px;
 }
 
@@ -144,6 +145,10 @@ nav {
     .toggle .line3 {
         transform: rotate(45deg) translate(-5px, -6px);
     }
+
+    .transition-overlay {
+        display: none !important; /* Force hide on mobile */
+    }
 }
 
 button {
@@ -161,14 +166,17 @@ button:hover {
 
 h1 {
     margin-bottom: 20px;
+    font-size: 3em;
 }
 
 p {
     line-height: 1.6;
+    padding: 50px 20px;
 }
 
 #guide {
-    background-image: url('../media/images/background.png');
+    /* Remove or comment out this line */
+    /* background-image: url('../media/images/background.png'); */
 }
 
 .transition-overlay {
@@ -190,7 +198,7 @@ p {
 }
 
 .transition-overlay video {
-    height: 303px;
+    height: 100vh;
     object-fit: fill;
     position: absolute;
     top: 60%;
@@ -305,17 +313,20 @@ p {
 
 .causes-container {
   max-width: 800px;
-  margin: 0 auto;
   padding: 20px;
   width: 100%;
 }
 
 .genetic-causes, .other-causes {
   margin-bottom: 40px;
+  margin-top: 40px;
+  padding: 20px 0px;
+  
 }
 
 .genetic-causes h2, .other-causes h2 {
   margin-bottom: 20px;
+  margin-top: 40px;
   color: #333;
   text-align: center;
 }
