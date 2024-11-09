@@ -463,3 +463,30 @@ footer {
     width: 100%;
     font-family: 'Space Mono', monospace;
 }
+
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.image-wrapper {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+}
+
+.contact-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .image-wrapper {
+        min-width: 100%;
+    }
+}
