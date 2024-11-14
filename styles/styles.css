@@ -480,9 +480,22 @@ footer {
 
 .contact-image {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 300px; /* Adjust height as needed */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.howitstarted-image {
+    background-image: url('/media/images/howitstarted.png');
+}
+
+.fat-image {
+    background-image: url('/media/images/fat.png');
+}
+
+.fit-image {
+    background-image: url('/media/images/fit.png');
 }
 
 @media (max-width: 768px) {
