@@ -488,15 +488,15 @@ footer {
 }
 
 .howitstarted-image {
-    background-image: url('/media/images/howitstarted.png');
+    background-image: url('../media/images/howitstarted.png');
 }
 
 .fat-image {
-    background-image: url('/media/images/fat.png');
+    background-image: url('../media/images/fat.png');
 }
 
 .fit-image {
-    background-image: url('/media/images/fit.png');
+    background-image: url('../media/images/fit.png');
 }
 
 @media (max-width: 768px) {
