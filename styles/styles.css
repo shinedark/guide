@@ -175,6 +175,7 @@ p {
 }
 
 #guide {
+    height: 100%;
     /* Remove or comment out this line */
     /* background-image: url('../media/images/background.png'); */
 }
