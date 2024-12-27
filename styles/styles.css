@@ -110,11 +110,14 @@ h3 { font-size: var(--font-size-h3); }
     background-color: var(--color-primary);
     border-top: 1px solid var(--color-accent);
     z-index: 1000;
+    display: flex;
+    justify-content: center;
 }
 
 .nav-links {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     width: 100%;
     max-width: var(--max-width);
     padding: 0 var(--spacing-md);
@@ -129,6 +132,8 @@ h3 { font-size: var(--font-size-h3); }
     transition: all var(--transition-normal);
     position: relative;
     font-family: var(--font-primary);
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .nav-button::after {
@@ -163,6 +168,11 @@ h3 { font-size: var(--font-size-h3); }
     border: none;
     cursor: pointer;
     padding: var(--spacing-xs);
+    position: absolute;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
 }
 
 .burger__line {
@@ -346,8 +356,6 @@ h3 { font-size: var(--font-size-h3); }
 @media screen and (max-width: 768px) {
     .burger {
         display: block;
-        position: absolute;
-        right: var(--spacing-md);
     }
 
     .nav-links {
@@ -360,6 +368,8 @@ h3 { font-size: var(--font-size-h3); }
         padding: var(--spacing-md);
         transform: translateY(100%);
         transition: transform var(--transition-normal);
+        gap: var(--spacing-sm);
+        border-top: 1px solid var(--color-accent);
     }
 
     .nav-links.active {
@@ -370,6 +380,29 @@ h3 { font-size: var(--font-size-h3); }
         width: 100%;
         padding: var(--spacing-sm);
         text-align: center;
+        font-size: 1rem;
+    }
+
+    .nav-button::after {
+        display: none;
+    }
+
+    .nav-button:hover,
+    .nav-button.active {
+        background-color: var(--color-accent);
+    }
+
+    /* Burger animation */
+    .burger.active .burger__line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .burger.active .burger__line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.active .burger__line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
 
     .section {
@@ -396,6 +429,27 @@ h3 { font-size: var(--font-size-h3); }
 
     .contact-image {
         height: 250px;
+    }
+}
+
+/* Tablet Navigation */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .nav-button {
+        font-size: 0.8rem;
+        padding: var(--spacing-xs) var(--spacing-xs);
+    }
+}
+
+/* Large Screen Navigation */
+@media screen and (min-width: 1025px) {
+    .nav-links {
+        justify-content: center;
+        gap: var(--spacing-lg);
+    }
+
+    .nav-button {
+        font-size: 1rem;
+        padding: var(--spacing-xs) var(--spacing-md);
     }
 }
 
