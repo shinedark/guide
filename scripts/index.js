@@ -1,186 +1,227 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const nav = document.querySelector('nav')
-  const sections = document.querySelectorAll('.section')
-
-  // Array of video paths
-  const transitionVideos = [
-    'media/video/swing.mov',
-    'media/video/vibra.mov',
-    'media/video/vinyl.mov',
-  ]
-
-  // Create video overlay
-  const overlay = document.createElement('div')
-  overlay.className = 'transition-overlay'
-
-  // Create video element
-  const video = document.createElement('video')
-  video.muted = true
-  video.className = 'transition-video'
-
-  // Create TV overlay images
-  const tvOverlayFront = document.createElement('img')
-  tvOverlayFront.className = 'tv-overlay tv-front'
-  tvOverlayFront.src = 'media/images/tvup.png'
-
-  const tvOverlayBack = document.createElement('img')
-  tvOverlayBack.className = 'tv-overlay tv-back'
-  tvOverlayBack.src = 'media/images/tvdown.png'
-
-  // Add elements to overlay in correct order
-  overlay.appendChild(video)
-  overlay.appendChild(tvOverlayBack)
-  overlay.appendChild(tvOverlayFront)
-  document.body.appendChild(overlay)
-
-  nav.addEventListener('click', async (e) => {
-    if (e.target.tagName === 'BUTTON') {
-      const sectionId = e.target.dataset.section
-
-      // Check if device is mobile
-      const isMobile = window.innerWidth <= 768
-
-      if (!isMobile) {
-        // Only play transition on desktop
-        const randomVideo =
-          transitionVideos[Math.floor(Math.random() * transitionVideos.length)]
-        video.src = randomVideo
-
-        overlay.classList.add('active')
-        video.currentTime = 0
-        await video.play()
-      }
-
-      // Remove active class from all sections
-      sections.forEach((section) => section.classList.remove('active'))
-
-      // Add active class to selected section
-      document.getElementById(sectionId).classList.add('active')
-
-      if (!isMobile) {
-        // Only wait for video on desktop
-        video.addEventListener(
-          'ended',
-          () => {
-            overlay.classList.remove('active')
-          },
-          { once: true },
-        )
-      }
-    }
-  })
-
-  // Load both timeline and causes data
-  loadData().then(() => {
-    initializeFilters()
-  })
-
+  // DOM Elements
+  const navButtons = document.querySelectorAll('.nav-button')
   const burger = document.querySelector('.burger')
   const navLinks = document.querySelector('.nav-links')
+  const timelineFilters = document.querySelectorAll('.filter-btn')
+  const timelineEntries = document.querySelectorAll('.timeline-entry')
 
-  burger.addEventListener('click', () => {
-    navLinks.classList.toggle('active')
-    burger.classList.toggle('toggle')
-  })
+  // Load data immediately
+  loadData()
 
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (
-      !navLinks.contains(e.target) &&
-      !burger.contains(e.target) &&
-      navLinks.classList.contains('active')
-    ) {
-      navLinks.classList.remove('active')
-      burger.classList.remove('toggle')
+  // Smooth scroll to section
+  function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  // Mobile menu toggle
+  function toggleMobileMenu() {
+    burger.classList.toggle('active')
+    navLinks.classList.toggle('active')
+    document.body.classList.toggle('menu-open')
+  }
+
+  // Event Listeners
+  navButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const sectionId = button.dataset.section
+      scrollToSection(sectionId)
+
+      // Close mobile menu if open
+      if (navLinks.classList.contains('active')) {
+        toggleMobileMenu()
+      }
+    })
   })
+
+  burger?.addEventListener('click', toggleMobileMenu)
+
+  // Timeline filtering
+  function filterTimeline(category) {
+    timelineFilters.forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.filter === category)
+    })
+
+    timelineEntries.forEach((entry) => {
+      entry.style.display =
+        category === 'all' || entry.dataset.category === category
+          ? 'block'
+          : 'none'
+    })
+  }
+
+  timelineFilters.forEach((button) => {
+    button.addEventListener('click', () => {
+      filterTimeline(button.dataset.filter)
+    })
+  })
+
+  // Initialize timeline filter
+  filterTimeline('all')
+
+  // Handle initial load with hash
+  if (window.location.hash) {
+    const sectionId = window.location.hash.slice(1)
+    scrollToSection(sectionId)
+  }
 })
 
+// Load data function
 async function loadData() {
-  const response = await fetch('info.json')
-  const data = await response.json()
+  try {
+    const response = await fetch('info.json')
+    const data = await response.json()
 
-  // Add console log to check the data structure
-  console.log('Loaded data:', data)
+    // Load causes
+    populateCauses({
+      geneticCauses: data.publicTimeline.geneticCauses,
+      otherCauses: data.publicTimeline.otherCauses,
+    })
 
-  // Load causes separately
-  populateCauses({
-    geneticCauses: data.publicTimeline.geneticCauses,
-    otherCauses: data.publicTimeline.otherCauses,
-  })
+    // Load timeline
+    populateTimeline(data.publicTimeline.years)
+  } catch (error) {
+    console.error('Error loading data:', error)
+  }
+}
 
-  // Load timeline
+// Populate timeline entries
+function populateTimeline(years) {
   const timelineEntries = document.querySelector('.timeline-entries')
   const template = document.getElementById('timeline-entry-template')
+
+  if (!timelineEntries || !template) {
+    console.error('Required timeline elements not found')
+    return
+  }
 
   // Clear existing entries
   timelineEntries.innerHTML = ''
 
-  data.publicTimeline.years.reverse().forEach((year) => {
-    const entry = template.content.cloneNode(true)
-    const entryElement = entry.querySelector('.timeline-entry')
+  // Sort years in reverse chronological order
+  years
+    .sort((a, b) => b.year - a.year)
+    .forEach((yearData) => {
+      const entry = template.content.cloneNode(true)
 
-    // Add data attributes for filtering
-    entryElement.dataset.diagnosisChange = Boolean(year.diagnosisChange)
-    entryElement.dataset.hasLifeEvents = Boolean(year.lifeEvents?.length)
-    entryElement.dataset.hasTreatments = Boolean(year.treatments?.length)
+      // Set year
+      entry.querySelector('.year').textContent = yearData.year
 
-    // Fill in the data
-    entry.querySelector('.year').textContent = year.year
+      // Set diagnosis if exists
+      if (yearData.diagnosis) {
+        const diagnosisDiv = entry.querySelector('.diagnosis')
+        diagnosisDiv.innerHTML = `<strong>Diagnosis:</strong> ${yearData.diagnosis}`
+        entry.querySelector('.timeline-entry').dataset.diagnosisChange = 'true'
+      }
 
-    const diagnosisDiv = entry.querySelector('.diagnosis')
-    diagnosisDiv.textContent = `Diagnosis: ${year.diagnosis}`
-    if (year.diagnosisChange === true) {
-      diagnosisDiv.classList.add('diagnosis-change')
-    }
+      // Set treatments if exist
+      if (yearData.treatments) {
+        const treatmentsDiv = entry.querySelector('.treatments')
+        const treatments = Array.isArray(yearData.treatments)
+          ? yearData.treatments
+          : [yearData.treatments]
 
-    // Add treatments
-    const treatmentsDiv = entry.querySelector('.treatments')
-    if (year.treatments?.length) {
-      treatmentsDiv.innerHTML =
-        '<h3>Treatments:</h3>' +
-        year.treatments.map((t) => `${t.name} (${t.duration})`).join('<br>')
-    }
+        const treatmentsList = treatments
+          .map((t) => {
+            if (typeof t === 'object') {
+              return `<li>${t.name || ''} ${
+                t.duration ? `(${t.duration})` : ''
+              }</li>`
+            }
+            return `<li>${t}</li>`
+          })
+          .join('')
 
-    // Add life events
-    if (year.lifeEvents?.length) {
-      const eventsDiv = entry.querySelector('.life-events')
-      eventsDiv.innerHTML =
-        '<h3>Life Events:</h3>' + year.lifeEvents.join('<br>')
-    }
+        treatmentsDiv.innerHTML = `
+        <strong>Treatments:</strong>
+        <ul>${treatmentsList}</ul>
+      `
+      }
 
-    // Add achievements
-    if (year.achievements) {
-      const achievementsDiv = entry.querySelector('.achievements')
-      achievementsDiv.innerHTML =
-        '<h3>Achievements:</h3>' +
-        (Array.isArray(year.achievements)
-          ? year.achievements.join('<br>')
-          : year.achievements)
-    }
+      // Set life events if exist
+      if (yearData.lifeEvents) {
+        const eventsDiv = entry.querySelector('.life-events')
+        const events = Array.isArray(yearData.lifeEvents)
+          ? yearData.lifeEvents
+          : [yearData.lifeEvents]
 
-    // Add hospitalizations
-    if (year.hospitalizations > 0) {
-      entry.querySelector(
-        '.hospitalizations',
-      ).textContent = `Hospitalizations: ${year.hospitalizations}`
-    }
+        const eventsList = events
+          .map((e) => {
+            if (typeof e === 'object') {
+              return `<li>${e.event || e.description || JSON.stringify(e)}</li>`
+            }
+            return `<li>${e}</li>`
+          })
+          .join('')
 
-    timelineEntries.appendChild(entry)
-  })
+        eventsDiv.innerHTML = `
+        <strong>Life Events:</strong>
+        <ul>${eventsList}</ul>
+      `
+      }
+
+      // Set achievements if exist
+      if (yearData.achievements) {
+        const achievementsDiv = entry.querySelector('.achievements')
+        const achievements = Array.isArray(yearData.achievements)
+          ? yearData.achievements
+          : [yearData.achievements]
+
+        const achievementsList = achievements
+          .map((a) => {
+            if (typeof a === 'object') {
+              return `<li>${
+                a.achievement || a.description || JSON.stringify(a)
+              }</li>`
+            }
+            return `<li>${a}</li>`
+          })
+          .join('')
+
+        achievementsDiv.innerHTML = `
+        <strong>Achievements:</strong>
+        <ul>${achievementsList}</ul>
+      `
+      }
+
+      // Set hospitalizations if exist
+      if (yearData.hospitalizations) {
+        const hospitalizationsDiv = entry.querySelector('.hospitalizations')
+        const hospitalizations = Array.isArray(yearData.hospitalizations)
+          ? yearData.hospitalizations
+          : [yearData.hospitalizations]
+
+        const hospitalizationsList = hospitalizations
+          .map((h) => {
+            if (typeof h === 'object') {
+              return `<li>${
+                h.reason || h.description || JSON.stringify(h)
+              }</li>`
+            }
+            return `<li>${h}</li>`
+          })
+          .join('')
+
+        hospitalizationsDiv.innerHTML = `
+        <strong>Hospitalizations:</strong>
+        <ul>${hospitalizationsList}</ul>
+      `
+      }
+
+      timelineEntries.appendChild(entry)
+    })
 }
 
-// Add new function to populate causes
+// Populate causes
 function populateCauses(data) {
-  // Add console log to check the input data
-  console.log('Causes data:', data)
-
   const geneList = document.querySelector('.gene-list')
   const otherCausesList = document.querySelector('.other-causes-list')
 
-  // Check if elements exist
   if (!geneList || !otherCausesList) {
-    console.error('Could not find gene-list or other-causes-list elements')
+    console.error('Causes list elements not found')
     return
   }
 
@@ -188,7 +229,7 @@ function populateCauses(data) {
   geneList.innerHTML = ''
   otherCausesList.innerHTML = ''
 
-  // Populate genetic causes with timeline-like styling
+  // Populate genetic causes
   if (data.geneticCauses) {
     Object.entries(data.geneticCauses).forEach(([gene, mutations]) => {
       const geneDiv = document.createElement('div')
@@ -215,7 +256,7 @@ function populateCauses(data) {
     })
   }
 
-  // Populate other causes with timeline-like styling
+  // Populate other causes
   if (data.otherCauses) {
     Object.entries(data.otherCauses).forEach(([cause, description]) => {
       const causeDiv = document.createElement('div')
@@ -230,33 +271,4 @@ function populateCauses(data) {
       otherCausesList.appendChild(causeDiv)
     })
   }
-}
-
-// Add filter functionality
-function initializeFilters() {
-  const filterButtons = document.querySelectorAll('.filter-btn')
-  const entries = document.querySelectorAll('.timeline-entry')
-
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      // Remove active class from all buttons
-      filterButtons.forEach((btn) => btn.classList.remove('active'))
-      // Add active class to clicked button
-      e.target.classList.add('active')
-
-      const filter = e.target.dataset.filter
-
-      entries.forEach((entry) => {
-        switch (filter) {
-          case 'diagnosis':
-            entry.style.display =
-              entry.dataset.diagnosisChange === 'true' ? 'flex' : 'none'
-            break
-          default:
-            // 'all'
-            entry.style.display = 'flex'
-        }
-      })
-    })
-  })
 }
