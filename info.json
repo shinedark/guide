@@ -322,7 +322,7 @@
         "achievements": ["New Job", "New Apartment"],
         "jobs": "Perficient",
         "hospitalizations": 0,
-        "lifeEvents": ["Broke up with girlfriend", "new job", "new aprtment", "Meet new girl"],
+        "lifeEvents": ["Broke up with girlfriend", "new job", "new aprtment", "Meet new girlfriend"],
         "treatments": [
           {
             "name": "Abilify",
